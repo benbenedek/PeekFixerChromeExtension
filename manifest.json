@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+
+  "name": "Peek Pro Fixer",
+  "version": "0.1.0",
+  "description": "Some minor page fixes",
+
+  "content_scripts": [{
+    "js": ["jquery-3.3.1.min.js", "content.js"],
+    "matches": ["https://pro-app.peek.com/*"]
+  }]
+
+}
