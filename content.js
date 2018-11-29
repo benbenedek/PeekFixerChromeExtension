@@ -1,37 +1,42 @@
 setTimeout(function onLoad() {
     if (typeof $ != 'undefined') {
 
-      console.log("Peek Fixer Monitor")
-
       // ----======= Updating Dashboard Page =======----
 
       // Clicking 'View all activities' link
-      if ($(".js-link:contains('View all activities')").length > 0) {
-          $(".js-link:contains('View all activities')")[0].click();
+      var viewAllActivitiesLink = $(".js-link:contains('View all activities')");
+      if (viewAllActivitiesLink.length > 0) {
+          viewAllActivitiesLink[0].click();
       }
 
       // Hiding 'View activities with bookings' and 'View all activities' link
-      $(".js-link:contains('View all activities')").hide();
+      viewAllActivitiesLink.hide();
       $(".js-link:contains('View activities with bookings')").hide();
 
 
       // ----======= Booking Options in Booking Wizard =======----
 
-      // Clicking 'Customer Questions' link
-      if ($(".js-link:contains('Customer Questions')").length > 0) {
-          $(".js-link:contains('Customer Questions')")[0].click();
+      // Clicking and hiding 'Customer Questions' link
+      var customerQuestionsLink = $(".js-link:contains('Customer Questions')");
+      if (customerQuestionsLink.length > 0) {
+          //customerQuestionsLink[0].click(); // TODO: do only once!
       }
-      $(".js-link:contains('Customer Questions')").hide();
+      customerQuestionsLink.hide();
 
-      // Hiding 'Edit Price' link
+      // Clicking 'Pay Now In Full' & Cash
+      var payNowInFull = $(".button-group-item:contains('Pay Now In Full')");
+      payNowInFull.click();
+      $(".button-group-item:contains('Cash')").click();
+
+      // Hiding irrelevant payment options
       $(".js-link:contains('Edit Price')").hide();
-
-      // Hiding 'Pay Later', 'Voucher' & 'Other' payent options
+      payNowInFull.hide();
+      $(".button-group-item:contains('Credit Card')").hide();
       $(".button-group-item:contains('Pay Later')").hide();
       $(".button-group-item:contains('Voucher')").hide();
       $(".button-group-item:contains('Other')").hide();
 
-      // Block past dates - TODO
+      // TODO: Block past dates
       //var date = new Date(); // get local date
       //var today = date.getDate();
       //for (i = 1; i < today; ++i) {
