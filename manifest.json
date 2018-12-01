@@ -1,13 +1,16 @@
 {
   "manifest_version": 2,
 
-  "name": "Peek Pro Fixer",
-  "version": "0.1.0",
-  "description": "Some minor page fixes",
+  "name": "PP Fixer",
+  "version": "1.0",
+  "description": "PP Fixer",
 
   "content_scripts": [{
     "js": ["jquery-3.3.1.min.js", "content.js"],
     "matches": ["https://pro-app.peek.com/*"]
-  }]
+  }],
 
+  "browser_action": {
+      "default_icon": "icon-32.png"
+   }
 }

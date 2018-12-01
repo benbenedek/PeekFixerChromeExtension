@@ -1,7 +1,10 @@
 setTimeout(function onLoad() {
     if (typeof $ != 'undefined') {
 
-      // ----======= Updating Dashboard Page =======----
+
+      // ----============== Updating Dashboard Page ==============----
+
+
 
       // Clicking 'View all activities' link
       var viewAllActivitiesLink = $(".js-link:contains('View all activities')");
@@ -14,13 +17,32 @@ setTimeout(function onLoad() {
       $(".js-link:contains('View activities with bookings')").hide();
 
 
-      // ----======= Booking Options in Booking Wizard =======----
+
+      // ----============== Updating Booking Wizard ===============----
+
+
+
+      // Hide 'Add Another Product' button
+      $(".secondary-button.button-block:contains('Add Another Product')").hide();
+
+      // Hide 'Change Due' Section
+      $(".form-section-header:contains('Enter Payment Information')").hide();
+      $(".margin-md-bottom:contains('Change Due:')").hide();
+
+      // Block past dates
+      var date = new Date(); // get local date
+      var today = date.getDate();
+      for (i = 1; i < today; ++i) {
+        $(".ember-view.availability-calendar-day.in-month.is-not-today.is-available.is-not-selected:contains('" + i + "')").contents().unwrap();;
+      }
 
       // Clicking and hiding 'Customer Questions' link
       var customerQuestionsLink = $(".js-link:contains('Customer Questions')");
+      /* TODO: do only once!
       if (customerQuestionsLink.length > 0) {
-          //customerQuestionsLink[0].click(); // TODO: do only once!
+          //customerQuestionsLink[0].click();
       }
+      */
       customerQuestionsLink.hide();
 
       // Clicking 'Pay Now In Full' & Cash
@@ -28,21 +50,14 @@ setTimeout(function onLoad() {
       payNowInFull.click();
       $(".button-group-item:contains('Cash')").click();
 
-      // Hiding irrelevant payment options
-      $(".js-link:contains('Edit Price')").hide();
-      payNowInFull.hide();
-      $(".button-group-item:contains('Credit Card')").hide();
-      $(".button-group-item:contains('Pay Later')").hide();
-      $(".button-group-item:contains('Voucher')").hide();
-      $(".button-group-item:contains('Other')").hide();
+      // Writing Payment Instructions
+      payNowInFull.text('POR FAVOR ASEGURA QUE RECIBISTE EL PAGO ANTES DE HACER CLICK EN \'Save Booking\'');
 
-      // TODO: Block past dates
-      //var date = new Date(); // get local date
-      //var today = date.getDate();
-      //for (i = 1; i < today; ++i) {
-          //$(".:contains('" + i + "')").hide(); // remove link
-      //}
+      // Hide irrelevant payment options
+      $(".js-link:contains('Edit Price')").hide();
+      $(".button-group-item:contains('Pay Later')").hide();
+      $(".ember-view.pro-button-group.pro-button-group-block:contains('Credit Card')").hide();
   }
 
-  setTimeout(onLoad, 1000);
-}, 1000);
+  setTimeout(onLoad, 500);
+}, 500);
