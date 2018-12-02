@@ -1,9 +1,7 @@
 {
-  "manifest_version": 2,
-
-  "name": "PP Fixer",
-  "version": "1.0",
-  "description": "PP Fixer",
+  "name": "Peek Pro Helper",
+  "version": "1.2",
+  "description": "Simplify your peek pro interface for a better booking experience.",
 
   "content_scripts": [{
     "js": ["jquery-3.3.1.min.js", "content.js"],
@@ -11,6 +9,13 @@
   }],
 
   "browser_action": {
-      "default_icon": "icon-32.png"
-   }
+    "default_icon": "images/icon-128.png",
+    "default_title": "Click to Book"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "manifest_version": 2
 }
