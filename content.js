@@ -2,23 +2,17 @@ setTimeout(function onLoad() {
     if (typeof $ != 'undefined') {
 
       // Making sure all activities are visible to the user
-      var viewAllActivitiesLink = $(".js-link:contains('View all activities')");
+      var viewAllActivitiesLink = $(".split-tab-toggle:contains('View all activities')");
       if (viewAllActivitiesLink.length > 0) {
           viewAllActivitiesLink[0].click();
       }
-
+      
       // Remove irrelevant options from dashboard to prevent confusion
       viewAllActivitiesLink.hide();
       $(".js-link:contains('View activities with bookings')").hide();
       $(".secondary-button.button-block:contains('Add Another Product')").hide();
       $(".form-section-header:contains('Enter Payment Information')").hide();
       $(".margin-md-bottom:contains('Change Due:')").hide();
-      var customerQuestionsLink = $(".js-link:contains('Customer Questions')");
-      /* TODO: do only once!
-      if (customerQuestionsLink.length > 0) {
-          //customerQuestionsLink[0].click();
-      }*/
-      customerQuestionsLink.hide();
 
       // Prevent user errors by blocking availability of past dates
       var date = new Date();
