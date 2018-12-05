@@ -1,7 +1,10 @@
 setTimeout(function onLoad() {
 
-    // Monitoring Peek Pro Booking Wizard
     if (typeof $ != 'undefined') {
+
+
+      // -------------------------    Monitoring Peek Pro Booking Dashboard    -------------------------
+
 
       // Making sure all activities are visible to the user
       if (!$(".pika-lendar").is(":visible")) {
@@ -23,31 +26,66 @@ setTimeout(function onLoad() {
       }
  
 
-      // Remove irrelevant options from dashboard to prevent confusion
-      $(".secondary-button.button-block:contains('Add Another Product')").hide();
-      $(".form-section-header:contains('Enter Payment Information')").hide();
-      $(".margin-md-bottom:contains('Change Due:')").hide();
+      // --------------------------    Monitoring Peek Pro Booking Wizard    ---------------------------
 
 
       // Prevent user errors by blocking availability of past dates
-      var date = new Date();
-      var today = date.getDate();
-      for (i = 1; i < today; ++i) {
-        $(".ember-view.availability-calendar-day.in-month.is-not-today.is-available.is-not-selected:contains('" + i + "')").contents().unwrap();;
+      if ($(".pro-form-label:contains('Date / Time')").is(":visible")) {
+        var date = new Date();
+        var today = date.getDate();
+        for (i = 1; i < today; ++i) {
+          $(".ember-view.availability-calendar-day.in-month.is-not-today.is-available.is-not-selected:contains('" + i + "')").contents().unwrap();;
+        }
+      }
+
+      if ($(".pk-1-2:contains('Mx$')").is(":visible")) {
+      // Making sure the prices has updated (prevent 0 price bug)
+        
+        // Blocking 'Edit Price' option
+        if ($(".js-link:contains('Edit Price')").is(":visible")) {
+          $(".js-link:contains('Edit Price')").hide();
+        }
+
+        // Blocking 'Pay Later' option
+        if ($(".button-group-item:contains('Pay Now In Full')").is(":visible")) {
+          var payNowInFull = $(".button-group-item:contains('Pay Now In Full')");
+          if (payNowInFull.length > 0) {
+                payNowInFull[0].click();
+                payNowInFull.text('POR FAVOR ASEGURA QUE RECIBISTE EL PAGO ANTES DE HACER CLICK EN \'Save Booking\'');
+          }
+
+        }
+        if ($(".button-group-item:contains('Pay Later')").is(":visible")) {
+          $(".button-group-item:contains('Pay Later')").hide();
+        }
+
+        // Making sure 'Cash' is clicked
+        if ($(".button-group-item:contains('Cash')").is(":visible")) {
+          $(".button-group-item:contains('Cash')").click();
+
+          // Hiding payment options only after 'Cash' is clicked
+          if ($(".ember-view.pro-button-group.pro-button-group-block:contains('Credit Card')").is(":visible")) {
+            $(".ember-view.pro-button-group.pro-button-group-block:contains('Credit Card')").hide();
+          }
+        }
+        
+        // Hiding other irrelevant information
+        if ($(".secondary-button.button-block:contains('Add Another Product')").is(":visible")) {
+          $(".secondary-button.button-block:contains('Add Another Product')").hide();
+        }
+        if ($(".form-section-header:contains('Enter Payment Information')").is(":visible")) {
+          $(".form-section-header:contains('Enter Payment Information')").hide();
+        }
+        if ($(".margin-md-bottom:contains('Change Due:')").is(":visible")) {
+          $(".margin-md-bottom:contains('Change Due:')").hide();
+        }
+
       }
 
 
-      // Protecting customers and users by enabling only payment with cash
-      var payNowInFull = $(".button-group-item:contains('Pay Now In Full')");
-      if (payNowInFull.length > 0) {
-            payNowInFull[0].click();
-            payNowInFull.text('POR FAVOR ASEGURA QUE RECIBISTE EL PAGO ANTES DE HACER CLICK EN \'Save Booking\'');
-      }
-      $(".button-group-item:contains('Cash')").click();
-      $(".js-link:contains('Edit Price')").hide();
-      $(".button-group-item:contains('Pay Later')").hide();
-      $(".ember-view.pro-button-group.pro-button-group-block:contains('Credit Card')").hide();
+      // -----------------------------------------------------------------------------------------------
+
   }
 
-  setTimeout(onLoad, 1000);
-}, 1000);
+  setTimeout(onLoad, 500);
+}, 500);
