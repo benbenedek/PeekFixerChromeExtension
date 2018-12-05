@@ -1,0 +1,30 @@
+====> To publish a new extension version:
+         1. Update the extension version in the manifest file (don't touch the manifest's version).
+         2. Go to chrome://extensions and disable the published ('old') extension.
+         3. In the extension section switch to 'Developer Mode' and 'Load Unpacked' the new version.
+         4. Test the new version.
+         3. When done, zip the entire folder of the extension (without unrelated files).
+         5. In the Developer Dashboard 'Edit' the extension and select 'Upload Updated Package'.
+         6. Once done, push the version branch to git and create a new version branch.
+
+
+
+====> TODOS:
+
+      // Add icon images to the extension, hopefully will add the icon as a tile to the chrome://extensions section
+
+      // Notify me if something is not working correctly
+
+      // Fix Peek bug: if choosing number of tickets and date quickly - the price stays '0'
+
+      // add documetnation
+
+      // if past date is selected in dashboard, disable add booking options for the tours
+
+      // show customer questions and remove toggle link
+      --> DO ONLY ONCE
+      var customerQuestionsLink = $(".js-link:contains('Customer Questions')");
+      if (customerQuestionsLink.length > 0) {
+          customerQuestionsLink[0].click();
+      }
+      customerQuestionsLink.hide();
